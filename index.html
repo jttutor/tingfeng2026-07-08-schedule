@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>庭楓 助教行程</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: "Microsoft JhengHei", "PingFang TC", sans-serif;
+    background: #F7F6F3;
+    padding: 32px;
+    color: #37352F;
+}
+.page-title { font-size: 28px; font-weight: 700; color: #37352F; margin-bottom: 4px; }
+.page-sub { font-size: 14px; color: #9B9A97; margin-bottom: 8px; }
+.updated { font-size: 12px; color: #B0ADA8; margin-bottom: 28px; }
+
+.month-block { background: white; border-radius: 8px; overflow: hidden; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.month-header { background: #37352F; color: white; padding: 12px 20px; font-size: 15px; font-weight: 600; letter-spacing: 1px; display: flex; justify-content: space-between; align-items: center; }
+.month-total { font-size: 13px; color: #FAB005; font-weight: 600; }
+
+.day-row { display: grid; grid-template-columns: 130px 1fr; border-bottom: 1px solid #E9E9E7; min-height: 52px; }
+.day-row:last-child { border-bottom: none; }
+.day-label { padding: 12px 16px; border-right: 1px solid #E9E9E7; background: #FBFBFA; display: flex; flex-direction: column; justify-content: center; }
+.day-date { font-size: 15px; font-weight: 600; color: #37352F; }
+.day-week { font-size: 12px; color: #9B9A97; margin-top: 2px; }
+
+.day-events { padding: 10px 14px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+
+.event { display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 4px; font-size: 13px; font-weight: 500; line-height: 1.3; }
+.event.camp { background: #EEF3FF; color: #3B5BDB; border-left: 3px solid #3B5BDB; }
+.event.weiqi { background: #EBFBEE; color: #2B8A3E; border-left: 3px solid #40C057; }
+.event.observe { background: #F8F9FA; color: #868E96; border-left: 3px solid #CED4DA; font-style: italic; }
+.event.absent { background: #FFF5F5; color: #C92A2A; border-left: 3px solid #FA5252; font-style: italic; }
+
+.event-time { font-size: 11px; opacity: 0.7; white-space: nowrap; }
+.event-name { white-space: nowrap; }
+.badge { display: inline-block; background: rgba(0,0,0,0.1); border-radius: 10px; padding: 1px 7px; font-size: 11px; margin-left: 4px; }
+.pay-badge { background: #FAB005; color: white; border-radius: 10px; padding: 1px 8px; font-size: 11px; margin-left: 4px; font-weight: 600; }
+
+.legend { display: flex; gap: 14px; margin-bottom: 20px; flex-wrap: wrap; }
+.legend-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #6B6B6B; }
+.legend-dot { width: 12px; height: 12px; border-radius: 2px; }
+
+.summary { background: white; border-radius: 8px; padding: 20px 24px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.summary-title { font-size: 16px; font-weight: 700; color: #37352F; margin-bottom: 16px; }
+.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.summary-item { background: #F7F6F3; border-radius: 6px; padding: 12px 16px; }
+.summary-label { font-size: 12px; color: #9B9A97; margin-bottom: 4px; }
+.summary-value { font-size: 20px; font-weight: 700; color: #37352F; }
+.summary-sub { font-size: 12px; color: #9B9A97; margin-top: 2px; }
+.total-item { background: #37352F; }
+.total-item .summary-label { color: #9B9A97; }
+.total-item .summary-value { color: #FAB005; font-size: 24px; }
+.total-item .summary-sub { color: #9B9A97; }
+
+
+
+/* 薪水顯示 */
+.pay-badge.long-course { background: #FAB005; }
+.pay-badge.short-course { background: #FAB005; }
+
+
+.event.lunch { background: #FFF9DB; color: #E67700; border-left: 3px solid #FAB005; }
+
+</style>
+</head>
+<body>
+
+<div class="page-title">庭楓 · 2026年 助教行程</div>
+<div class="page-sub">兆婷藝術學院 · 助教課程（有薪）＋ 觀摩課程　｜　時薪制 $200/hr</div>
+<div class="updated">最後更新：2026/6/19　｜　助教費：$200/堂</div>
+
+
+
+</div>
+
+<div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>夏令營助教（$200/堂）</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>圍棋助教（$200/堂）</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#CED4DA"></div>觀摩（無薪）</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#FA5252"></div>不能來</div>
+</div>
+
+<!-- 總計摘要 -->
+<div class="summary">
+    <div class="summary-title">💰 薪水總計</div>
+    <div class="summary-grid">
+        <div class="summary-item">
+            <div class="summary-label">夏令營助教</div>
+            <div class="summary-value">50堂 + 午休5天（週四，免費午餐折抵）</div>
+            <div id="summary-camp-pay" class="summary-sub">$15,350（含科學課加給＋午休）</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">週六圍棋助教</div>
+            <div class="summary-value">10堂</div>
+            <div class="summary-sub">$2,000（5次×2堂）</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-label">何嘉仁圍棋助教</div>
+            <div class="summary-value">3堂</div>
+            <div class="summary-sub">$600</div>
+        </div>
+        <div class="summary-item total-item" style="grid-column: span 3;">
+            <div class="summary-label">全部合計</div>
+            <div class="summary-value">73堂　$18,850</div>
+            <div class="summary-sub">（觀摩課程不計算在內）</div>
+        </div>
+    </div>
+</div>
+
+<!-- 7月 週六 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>7 月 · 週六 ＋ 週五（礁溪）課程</span>
+        <span class="month-total">7/11 可來　7/18、7/25 不能來</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 11</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">10:30-12:00</span><span class="event-name">疊杯 觀摩</span></div>
+            <div class="event weiqi"><span class="event-time">13:00-16:00</span><span class="event-name">圍棋 助教 <span class="badge">12人</span><span class="pay-badge">$400</span></span></div>
+            <div class="event observe"><span class="event-time">16:00-17:30</span><span class="event-name">魔方 觀摩</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 18</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+    
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 25</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event jiaoxi"><span class="event-time">14:00-15:30</span><span class="event-name">礁溪才藝課 <span class="badge">15人</span><span class="pay-badge" style="background:#FF6B2B;">$350</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 25</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 第3梯 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>第 3 梯（7/13 ~ 7/17）夏令營</span>
+        <span class="month-total">10堂　$2,000</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 13</div><div class="day-week">週一</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">魔術 <span class="badge">14人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">氣球 <span class="badge">14人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 14</div><div class="day-week">週二</div></div>
+        <div class="day-events">
+            <div class="event camp" style="background:#FFF3E0;border-left:3px solid #FF6D00;"><span class="event-time">9:10-10:10</span><span class="event-name">🔬 科學（與昊品老師）<span class="badge">14人</span><span class="pay-badge" style="background:#FF6D00;">$350</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">圍棋<span class="badge">14人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 15</div><div class="day-week">週三</div></div>
+        <div class="day-events">
+
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">美術<span class="badge">13人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">彩色黏土<span class="badge">13人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 16</div><div class="day-week">週四</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">疊杯<span class="badge">14人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">待定<span class="badge">14人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+
+            <div class="event lunch"><span class="event-time">12:10-13:10</span><span class="event-name">午休顧班 🍱<span class="pay-badge" style="background:#40C057;">免費午餐</span></span></div>
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">藝術創作<span class="badge">13人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">書法<span class="badge">13人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 17</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 第5梯 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>第 5 梯（7/27 ~ 7/31）夏令營</span>
+        <span class="month-total">14堂　$2,800</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 27</div><div class="day-week">週一</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">魔術 <span class="badge">9人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">氣球<span class="badge">9人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 28</div><div class="day-week">週二</div></div>
+        <div class="day-events">
+            <div class="event camp" style="background:#FFF3E0;border-left:3px solid #FF6D00;"><span class="event-time">9:10-10:10</span><span class="event-name">🔬 科學（與昊品老師）<span class="badge">9人</span><span class="pay-badge" style="background:#FF6D00;">$350</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">圍棋<span class="badge">9人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 29</div><div class="day-week">週三</div></div>
+        <div class="day-events">
+
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">美術<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">彩色黏土<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 30</div><div class="day-week">週四</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">疊杯<span class="badge">9人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">美術<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+
+            <div class="event lunch"><span class="event-time">12:10-13:10</span><span class="event-name">午休顧班 🍱<span class="pay-badge" style="background:#40C057;">免費午餐</span></span></div>
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">藝術創作<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">書法<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">7 / 31</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">音樂<span class="badge">9人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">4D吸管<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">圍棋<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">氣球<span class="badge">8人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 8月週六 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>8 月 · 週六 ＋ 週五（礁溪）課程</span>
+        <span class="month-total">8/1、8/8、8/22、8/29 可來　8/15 不能來</span>
+    </div>
+    
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 1</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event jiaoxi"><span class="event-time">14:00-15:30</span><span class="event-name">礁溪才藝課 <span class="badge">15人</span><span class="pay-badge" style="background:#FF6B2B;">$350</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 1</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">10:30-12:00</span><span class="event-name">疊杯 觀摩</span></div>
+            <div class="event weiqi"><span class="event-time">13:00-16:00</span><span class="event-name">圍棋 助教 <span class="badge">12人</span><span class="pay-badge">$400</span></span></div>
+            <div class="event observe"><span class="event-time">16:00-17:30</span><span class="event-name">魔方 觀摩</span></div>
+        </div>
+    </div>
+    
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 8</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event jiaoxi"><span class="event-time">14:00-15:30</span><span class="event-name">礁溪才藝課 <span class="badge">15人</span><span class="pay-badge" style="background:#FF6B2B;">$350</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 8</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">10:30-12:00</span><span class="event-name">疊杯 觀摩</span></div>
+            <div class="event weiqi"><span class="event-time">13:00-16:00</span><span class="event-name">圍棋 助教 <span class="badge">12人</span><span class="pay-badge">$400</span></span></div>
+            <div class="event observe"><span class="event-time">16:00-17:30</span><span class="event-name">魔方 觀摩</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 15</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+    
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 22</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event jiaoxi"><span class="event-time">14:00-15:30</span><span class="event-name">礁溪才藝課 <span class="badge">15人</span><span class="pay-badge" style="background:#FF6B2B;">$350</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 22</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">10:30-12:00</span><span class="event-name">疊杯 觀摩</span></div>
+            <div class="event weiqi"><span class="event-time">13:00-16:00</span><span class="event-name">圍棋 助教 <span class="badge">12人</span><span class="pay-badge">$400</span></span></div>
+            <div class="event observe"><span class="event-time">16:00-17:30</span><span class="event-name">魔方 觀摩</span></div>
+        </div>
+    </div>
+    
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 29</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event jiaoxi"><span class="event-time">14:00-15:30</span><span class="event-name">礁溪才藝課 <span class="badge">15人</span><span class="pay-badge" style="background:#FF6B2B;">$350</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 29</div><div class="day-week">週六</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">10:30-12:00</span><span class="event-name">疊杯 觀摩</span></div>
+            <div class="event weiqi"><span class="event-time">13:00-16:00</span><span class="event-name">圍棋 助教 <span class="badge">12人</span><span class="pay-badge">$400</span></span></div>
+            <div class="event observe"><span class="event-time">16:00-17:30</span><span class="event-name">魔方 觀摩</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 何嘉仁 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>8 月 · 何嘉仁圍棋助教（週五）</span>
+        <span class="month-total">3堂　$600</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 7</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event weiqi"><span class="event-time">10:20-11:50</span><span class="event-name">何嘉仁圍棋 助教 <span class="badge">20人</span><span class="pay-badge">$200</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 14</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 21</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event weiqi"><span class="event-time">10:20-11:50</span><span class="event-name">何嘉仁圍棋 助教 <span class="badge">20人</span><span class="pay-badge">$200</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 28</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event weiqi"><span class="event-time">10:20-11:50</span><span class="event-name">何嘉仁圍棋 助教 <span class="badge">20人</span><span class="pay-badge">$200</span></span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 第6梯 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>第 6 梯（8/3 ~ 8/7）夏令營</span>
+        <span class="month-total">14堂　$2,800</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 3</div><div class="day-week">週一</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">魔術 <span class="badge">4人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">氣球<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 4</div><div class="day-week">週二</div></div>
+        <div class="day-events">
+            <div class="event camp" style="background:#FFF3E0;border-left:3px solid #FF6D00;"><span class="event-time">9:10-10:10</span><span class="event-name">🔬 科學（與昊品老師）<span class="badge">4人</span><span class="pay-badge" style="background:#FF6D00;">$350</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">圍棋<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 5</div><div class="day-week">週三</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">彩色黏土（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 6</div><div class="day-week">週四</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">疊杯<span class="badge">4人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event observe"><span class="event-time">10:20-11:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event lunch"><span class="event-time">12:10-13:10</span><span class="event-name">午休顧班 🍱<span class="pay-badge" style="background:#40C057;">免費午餐</span></span></div>
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">藝術創作（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">書法（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 7</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">9:10-10:10</span><span class="event-name">音樂（觀摩）</span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">小鼠代<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">圍棋<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">氣球<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 第7梯 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>第 7 梯（8/10 ~ 8/14）夏令營</span>
+        <span class="month-total">10堂　$2,000</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 10</div><div class="day-week">週一</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">魔術 <span class="badge">5人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">氣球<span class="badge">5人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 11</div><div class="day-week">週二</div></div>
+        <div class="day-events">
+            <div class="event camp" style="background:#FFF3E0;border-left:3px solid #FF6D00;"><span class="event-time">9:10-10:10</span><span class="event-name">🔬 科學（與昊品老師）<span class="badge">5人</span><span class="pay-badge" style="background:#FF6D00;">$350</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">圍棋<span class="badge">5人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 12</div><div class="day-week">週三</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">彩色黏土（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 13</div><div class="day-week">週四</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">疊杯<span class="badge">5人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event observe"><span class="event-time">10:20-11:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event lunch"><span class="event-time">12:10-13:10</span><span class="event-name">午休顧班 🍱<span class="pay-badge" style="background:#40C057;">免費午餐</span></span></div>
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">藝術創作（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">書法（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 14</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event absent"><span class="event-name">❌ 整天不能來</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- 第8梯 -->
+<div class="month-block">
+    <div class="month-header">
+        <span>第 8 梯（8/17 ~ 8/21）夏令營</span>
+        <span class="month-total">14堂　$2,800</span>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 17</div><div class="day-week">週一</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">魔術 <span class="badge">4人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">氣球<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 18</div><div class="day-week">週二</div></div>
+        <div class="day-events">
+            <div class="event camp" style="background:#FFF3E0;border-left:3px solid #FF6D00;"><span class="event-time">9:10-10:10</span><span class="event-name">🔬 科學（與昊品老師）<span class="badge">4人</span><span class="pay-badge" style="background:#FF6D00;">$350</span></span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">圍棋<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 19</div><div class="day-week">週三</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">彩色黏土（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 20</div><div class="day-week">週四</div></div>
+        <div class="day-events">
+            <div class="event camp"><span class="event-time">9:10-10:10</span><span class="event-name">疊杯<span class="badge">4人</span><span class="pay-badge">$200</span></span></div>
+            <div class="event observe"><span class="event-time">10:20-11:50</span><span class="event-name">美術（觀摩）</span></div>
+            <div class="event lunch"><span class="event-time">12:10-13:10</span><span class="event-name">午休顧班 🍱<span class="pay-badge" style="background:#40C057;">免費午餐</span></span></div>
+            <div class="event observe"><span class="event-time">13:20-14:50</span><span class="event-name">藝術創作（觀摩）</span></div>
+            <div class="event observe"><span class="event-time">15:00-16:30</span><span class="event-name">書法（觀摩）</span></div>
+        </div>
+    </div>
+    <div class="day-row">
+        <div class="day-label"><div class="day-date">8 / 21</div><div class="day-week">週五</div></div>
+        <div class="day-events">
+            <div class="event observe"><span class="event-time">9:10-10:10</span><span class="event-name">音樂（觀摩）</span></div>
+            <div class="event camp"><span class="event-time">10:20-11:50</span><span class="event-name">小鼠代<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+
+            <div class="event camp"><span class="event-time">13:20-14:50</span><span class="event-name">圍棋<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+            <div class="event camp"><span class="event-time">15:00-16:30</span><span class="event-name">氣球<span class="badge">4人</span><span class="pay-badge long-pay" style="background:#2B8A3E;">$300</span></span></div>
+        </div>
+    </div>
+</div>
+
+
+
+
+</body>
+</html>
+HTMLEOF
