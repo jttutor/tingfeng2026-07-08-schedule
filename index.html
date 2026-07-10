@@ -7,299 +7,261 @@
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { font-family: "Microsoft JhengHei", "PingFang TC", sans-serif; background: #F7F6F3; padding: 24px; color: #37352F; }
-.page-title { font-size: 26px; font-weight: 700; margin-bottom: 4px; }
-.page-sub { font-size: 13px; color: #9B9A97; margin-bottom: 20px; }
+.page-title { font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+.page-sub { font-size: 13px; color: #9B9A97; margin-bottom: 18px; }
 
-.summary { background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.summary { background: white; border-radius: 8px; padding: 16px 20px; margin-bottom: 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
 .summary-title { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
-.summary-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.summary-item { background: #F7F6F3; border-radius: 6px; padding: 10px 14px; }
+.summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.summary-item { background: #F7F6F3; border-radius: 6px; padding: 10px 12px; }
 .summary-label { font-size: 11px; color: #9B9A97; margin-bottom: 2px; }
-.summary-value { font-size: 18px; font-weight: 700; }
-.summary-sub { font-size: 11px; color: #9B9A97; margin-top: 2px; }
-.total-item { background: #37352F; grid-column: span 3; }
+.summary-value { font-size: 17px; font-weight: 700; }
+.summary-sub { font-size: 10px; color: #9B9A97; margin-top: 2px; }
+.total-item { background: #37352F; grid-column: span 4; }
 .total-item .summary-label { color: #9B9A97; }
-.total-item .summary-value { color: #FAB005; font-size: 22px; }
+.total-item .summary-value { color: #FAB005; font-size: 20px; }
 
-.week-title { background: #37352F; color: white; padding: 10px 16px; font-size: 14px; font-weight: 700; border-radius: 8px 8px 0 0; margin-top: 20px; display: flex; justify-content: space-between; align-items: center; }
-.week-subtitle { font-size: 12px; color: #9B9A97; font-weight: 400; }
-.main-table { background: white; border-radius: 0 0 8px 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); margin-bottom: 4px; }
-
-.day-row { display: grid; border-bottom: 1px solid #E9E9E7; }
-.day-row.col6 { grid-template-columns: 110px repeat(6, 1fr); }
-.day-row.col5 { grid-template-columns: 110px repeat(5, 1fr); }
-.day-row.col2 { grid-template-columns: 110px repeat(2, 1fr); }
-.day-row:last-child { border-bottom: none; }
-
-.cell { padding: 8px 7px; border-right: 1px solid #E9E9E7; font-size: 11px; min-height: 44px; }
+.wk-title { background: #37352F; color: white; padding: 9px 16px; font-size: 14px; font-weight: 700; border-radius: 8px 8px 0 0; margin-top: 18px; display: flex; justify-content: space-between; align-items: center; }
+.wk-sub { font-size: 11px; color: #C9C6C0; font-weight: 400; }
+.table { background: white; border-radius: 0 0 8px 8px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+.row { display: grid; grid-template-columns: 92px repeat(7, 1fr); border-bottom: 1px solid #E9E9E7; }
+.row:last-child { border-bottom: none; }
+.cell { padding: 7px 5px; border-right: 1px solid #E9E9E7; font-size: 10.5px; min-height: 40px; }
 .cell:last-child { border-right: none; }
-.cell.time-label { font-weight: 700; font-size: 11px; color: #9B9A97; background: #FBFBFA; display: flex; align-items: center; justify-content: center; text-align: center; }
-.cell.header-cell { font-weight: 700; font-size: 12px; text-align: center; color: #37352F; padding: 10px 4px; background: #F7F6F3; }
-.cell.header-cell .date { font-size: 15px; font-weight: 700; }
-.cell.header-cell .weekday { font-size: 11px; color: #9B9A97; }
-
-.event { border-radius: 4px; padding: 3px 6px; margin-bottom: 3px; font-size: 11px; font-weight: 500; line-height: 1.4; }
-.event:last-child { margin-bottom: 0; }
-.event.camp { background: #EEF3FF; color: #3B5BDB; border-left: 3px solid #3B5BDB; }
-.event.science { background: #FFF3E0; color: #E65100; border-left: 3px solid #FF6D00; }
-.event.jiaoxi-teacher { background: #EBFBEE; color: #2B8A3E; border-left: 3px solid #40C057; }
-.event.jiaoxi-assist { background: #FFF0E6; color: #D4500A; border-left: 3px solid #FF6B2B; }
-.event.observe { background: #F8F9FA; color: #868E96; border-left: 3px solid #CED4DA; font-style: italic; }
-.event.absent { background: #FFF5F5; color: #C92A2A; border-left: 3px solid #FA5252; }
-.event.lunch { background: #FFF9DB; color: #E67700; border-left: 3px solid #FAB005; }
-.event.guoketuan { background: #F3E8FF; color: #7B2FBE; border-left: 3px solid #9C36B5; }
-.event.depart { background: #E3FAFC; color: #0B7285; border-left: 3px solid #15AABF; }
-
-.pay-tag { display: inline-block; background: #FAB005; color: white; border-radius: 8px; padding: 1px 5px; font-size: 10px; font-weight: 700; margin-left: 3px; }
-.pay-tag.green { background: #2B8A3E; }
-.pay-tag.orange { background: #E65100; }
-.pay-tag.teal { background: #40C057; }
-.pay-tag.purple { background: #7B2FBE; }
-.pay-tag.jiaoxi { background: #FF6B2B; }
-
-.legend { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
-.legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: #6B6B6B; }
-.legend-dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+.cell.time { font-weight: 700; font-size: 10px; color: #9B9A97; background: #FBFBFA; display: flex; align-items: center; justify-content: center; text-align: center; }
+.cell.head { background: #F7F6F3; font-weight: 700; text-align: center; padding: 8px 2px; }
+.cell.head .dt { font-size: 13px; }
+.cell.head .wk { font-size: 10px; color: #9B9A97; }
+.ev { border-radius: 4px; padding: 3px 5px; margin-bottom: 2px; font-size: 10px; font-weight: 500; line-height: 1.3; }
+.ev.assist { background: #E7F5FF; color: #1971C2; border-left: 3px solid #4DABF7; }
+.ev.main { background: #EBFBEE; color: #2B8A3E; border-left: 3px solid #40C057; }
+.ev.jiaoxi { background: #FFF0E6; color: #D9480F; border-left: 3px solid #FF6B2B; }
+.ev.lunch { background: #FFF9DB; color: #E67700; border-left: 3px solid #FAB005; }
+.ev.absent { background: #FFF5F5; color: #C92A2A; border-left: 3px solid #FA5252; }
+.ev.other { background: #F8F9FA; color: #868E96; border-left: 3px solid #CED4DA; font-style: italic; }
+.pay { display: inline-block; background: #1971C2; color: white; border-radius: 8px; padding: 0px 5px; font-size: 9px; font-weight: 700; margin-left: 2px; }
+.pay.g { background: #2B8A3E; }
+.pay.o { background: #FF6B2B; }
+.legend { display: flex; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.legend span { font-size: 11px; color: #6B6B6B; display: flex; align-items: center; gap: 4px; }
+.dot { width: 10px; height: 10px; border-radius: 2px; }
 </style>
 </head>
 <body>
 <div class="page-title">庭楓 · 2026年 7月行程</div>
-<div class="page-sub">兆婷藝術學院 · 時薪制：短課$200 / 長課$300 / 礁溪當老師$350 / 礁溪當助教$300</div>
+<div class="page-sub">兆婷藝術學院 · 助教 短課$200 / 長課$300 · 主教 科學$300 / 礁溪$350 · 礁溪助教$300</div>
 
 <div class="legend">
-    <div class="legend-item"><div class="legend-dot" style="background:#3B5BDB"></div>宜蘭夏令營助教</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#FF6D00"></div>科學助教（$200）</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#40C057"></div>礁溪當老師（$350）</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#FF6B2B"></div>礁溪當助教（$300）</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#9C36B5"></div>救國團跟課</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#FAB005"></div>午休（含餐點）</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#CED4DA"></div>觀摩（無薪）</div>
-    <div class="legend-item"><div class="legend-dot" style="background:#FA5252"></div>不能來</div>
+    <span><span class="dot" style="background:#4DABF7"></span>夏令營助教</span>
+    <span><span class="dot" style="background:#40C057"></span>主教（自己上課）</span>
+    <span><span class="dot" style="background:#FF6B2B"></span>礁溪</span>
+    <span><span class="dot" style="background:#FAB005"></span>午休含餐點</span>
+    <span><span class="dot" style="background:#FA5252"></span>請假/不排</span>
 </div>
 
 <div class="summary">
     <div class="summary-title">💰 7月薪水總計</div>
     <div class="summary-grid">
-        <div class="summary-item">
-            <div class="summary-label">夏令營助教</div>
-            <div class="summary-value">$7,050</div>
-            <div class="summary-sub">第3梯$3,250＋第5梯$3,800</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">礁溪當老師</div>
-            <div class="summary-value">$1,050</div>
-            <div class="summary-sub">7/15、7/29、7/31 各$350（有夏令營）</div>
-        </div>
-        <div class="summary-item">
-            <div class="summary-label">礁溪當助教</div>
-            <div class="summary-value">$900</div>
-            <div class="summary-sub">7/22、7/23、7/25 各$300（無夏令營）</div>
-        </div>
-        <div class="summary-item total-item">
-            <div class="summary-label">7月合計（不含救國團待定）</div>
-            <div class="summary-value">$8,000　＋ 週六圍棋 $600　= $8,600</div>
-            <div class="summary-sub">午休含餐點不計薪</div>
-        </div>
+        <div class="summary-item"><div class="summary-label">夏令營助教+科學主教</div><div class="summary-value">$4,800</div><div class="summary-sub">第3梯+第5梯</div></div>
+        <div class="summary-item"><div class="summary-label">礁溪主教</div><div class="summary-value">$1,050</div><div class="summary-sub">7/15、7/29、7/31</div></div>
+        <div class="summary-item"><div class="summary-label">礁溪助教</div><div class="summary-value">$600</div><div class="summary-sub">7/22、7/24</div></div>
+        <div class="summary-item"><div class="summary-label">週六圍棋</div><div class="summary-value">$600</div><div class="summary-sub">7/12（颱風假調課）</div></div>
+        <div class="summary-item total-item"><div class="summary-label">7月合計（不含救國團跟課待定）</div><div class="summary-value">$7,050</div></div>
     </div>
 </div>
 
-<!-- 7/11 週六 -->
-<div class="week-title">
-    7 / 11（六）
-    <span class="week-subtitle">第一天上班 · 週六圍棋</span>
-</div>
-<div class="main-table">
-    <div class="day-row col2">
-        <div class="cell time-label">時段</div>
-        <div class="cell header-cell"><div class="date">7 / 11</div><div class="weekday">週六</div></div>
-        <div class="cell header-cell" style="visibility:hidden"></div>
+<!-- 7/11 -->
+<div class="wk-title">7/10（五）· 7/11（六）颱風假<span class="wk-sub">課程調至 7/12（日）</span></div>
+<div class="table">
+    <div class="row" style="grid-template-columns:92px 1fr;">
+        <div class="cell time">7/10、7/11</div>
+        <div class="cell"><div class="ev absent">🌀 颱風假（課程調至 7/12）</div></div>
     </div>
-    <div class="day-row col2">
-        <div class="cell time-label">上午</div>
-        <div class="cell"><div class="event observe">10:30-12:00 疊杯 觀摩</div></div>
+</div>
+
+<div class="wk-title">7/12（日）第一天上班<span class="wk-sub">颱風假調課</span></div>
+<div class="table">
+    <div class="row" style="grid-template-columns:92px 1fr;">
+        <div class="cell time">9:00-12:00</div>
+        <div class="cell"><div class="ev assist">圍棋課 助教<span class="pay">$600</span></div></div>
+    </div>
+    <div class="row" style="grid-template-columns:92px 1fr;">
+        <div class="cell time">12:30-14:00</div>
+        <div class="cell"><div class="ev other">魔方 跟課學習（無費用）</div></div>
+    </div>
+</div>
+
+<!-- 第3梯 -->
+<div class="wk-title">第 3 梯夏令營　7/13 ～ 7/19<span class="wk-sub">14人 · 週三下午去礁溪</span></div>
+<div class="table">
+    <div class="row">
+        <div class="cell time">時段</div>
+        <div class="cell head"><div class="dt">7/13</div><div class="wk">一</div></div>
+        <div class="cell head"><div class="dt">7/14</div><div class="wk">二</div></div>
+        <div class="cell head"><div class="dt">7/15</div><div class="wk">三</div></div>
+        <div class="cell head"><div class="dt">7/16</div><div class="wk">四</div></div>
+        <div class="cell head"><div class="dt">7/17</div><div class="wk">五</div></div>
+        <div class="cell head"><div class="dt">7/18</div><div class="wk">六</div></div>
+        <div class="cell head"><div class="dt">7/19</div><div class="wk">日</div></div>
+    </div>
+    <div class="row">
+        <div class="cell time">9:10-10:10</div>
+        <div class="cell"><div class="ev assist">魔術助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev assist">科學助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev other">上午不排</div></div>
+        <div class="cell"><div class="ev assist">疊杯助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
         <div class="cell"></div>
     </div>
-    <div class="day-row col2">
-        <div class="cell time-label">下午</div>
-        <div class="cell">
-            <div class="event camp">13:00-16:00 圍棋助教<span class="pay-tag">$600</span></div>
-            <div class="event observe">16:00-17:30 魔方 觀摩</div>
-        </div>
+    <div class="row">
+        <div class="cell time">10:20-11:50</div>
+        <div class="cell"><div class="ev assist">氣球助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev assist">圍棋助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev other">上午不排</div></div>
+        <div class="cell"><div class="ev assist">書法助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">12:00-13:20 午休</div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
+        <div class="cell"></div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">13:20-14:50</div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev jiaoxi">13:30出發·14:00礁溪科學主教<span class="pay o">$350</span></div></div>
+        <div class="cell"><div class="ev main">科學 主教<span class="pay g">$350</span></div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">15:00-16:30</div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"></div>
+        <div class="cell"><div class="ev assist">音樂助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
         <div class="cell"></div>
     </div>
 </div>
 
-<!-- 第3梯夏令營 -->
-<div class="week-title">
-    第 3 梯夏令營　7/13 ~ 7/18
-    <span class="week-subtitle">宜蘭教室 · 7/15 下午去礁溪當老師</span>
-</div>
-<div class="main-table">
-    <div class="day-row col6">
-        <div class="cell time-label">時段</div>
-        <div class="cell header-cell"><div class="date">7/13</div><div class="weekday">週一</div></div>
-        <div class="cell header-cell"><div class="date">7/14</div><div class="weekday">週二</div></div>
-        <div class="cell header-cell"><div class="date">7/15</div><div class="weekday">週三</div></div>
-        <div class="cell header-cell"><div class="date">7/16</div><div class="weekday">週四</div></div>
-        <div class="cell header-cell"><div class="date">7/17</div><div class="weekday">週五</div></div>
-        <div class="cell header-cell"><div class="date">7/18</div><div class="weekday">週六</div></div>
+<!-- 無夏令營 -->
+<div class="wk-title">無夏令營　7/20 ～ 7/26<span class="wk-sub">週一四救國團跟課學習（無費用）· 週三五礁溪助教</span></div>
+<div class="table">
+    <div class="row">
+        <div class="cell time">時段</div>
+        <div class="cell head"><div class="dt">7/20</div><div class="wk">一</div></div>
+        <div class="cell head"><div class="dt">7/21</div><div class="wk">二</div></div>
+        <div class="cell head"><div class="dt">7/22</div><div class="wk">三</div></div>
+        <div class="cell head"><div class="dt">7/23</div><div class="wk">四</div></div>
+        <div class="cell head"><div class="dt">7/24</div><div class="wk">五</div></div>
+        <div class="cell head"><div class="dt">7/25</div><div class="wk">六</div></div>
+        <div class="cell head"><div class="dt">7/26</div><div class="wk">日</div></div>
     </div>
-    <div class="day-row col6">
-        <div class="cell time-label">9:10-10:10</div>
-        <div class="cell"><div class="event camp">魔術 14人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event camp">科學 助教 14人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event other">週三上午不排課</div></div>
-        <div class="cell"><div class="event camp">疊杯 14人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-    </div>
-    <div class="day-row col6">
-        <div class="cell time-label">10:20-11:50</div>
-        <div class="cell"><div class="event camp">氣球 14人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event camp">圍棋 14人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event other">週三上午不排課</div></div>
-        <div class="cell"><div class="event camp">書法 14人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-    </div>
-    <div class="day-row col6">
-        <div class="cell time-label">12:10-13:10 午休</div>
-        <div class="cell"><div class="event lunch">🍱 含餐點</div></div>
-        <div class="cell"><div class="event lunch">🍱 含餐點</div></div>
-        <div class="cell"><div class="event depart">13:30 出發礁溪</div></div>
-        <div class="cell"><div class="event lunch">🍱 免費午餐</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-    </div>
-    <div class="day-row col6">
-        <div class="cell time-label">13:20-14:50</div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"></div>
-        <div class="cell"><div class="event camp">藝術創作 13人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-    </div>
-    <div class="day-row col6">
-        <div class="cell time-label">14:00-15:30</div>
-        <div class="cell"></div>
-        <div class="cell"></div>
-        <div class="cell"><div class="event jiaoxi-teacher">14:00-15:30 礁溪科學課 當老師<span class="pay-tag teal">$350</span></div></div>
-        <div class="cell"></div>
+    <div class="row">
+        <div class="cell time">上午 9:00-10:30</div>
+        <div class="cell"><div class="ev other">救國團・疊杯第1班<br>跟課學習（無費用）</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
         <div class="cell"></div>
         <div class="cell"></div>
     </div>
-    <div class="day-row col6">
-        <div class="cell time-label">15:00-16:30</div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
+    <div class="row">
+        <div class="cell time">上午 10:40-12:10</div>
+        <div class="cell"><div class="ev other">救國團・疊杯第2班<br>跟課學習（無費用）</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">救國團・圍棋第1班<br>跟課學習（無費用）</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
         <div class="cell"></div>
-        <div class="cell"><div class="event camp">音樂 13人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">下午 13:30-15:00</div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev other">不排</div></div>
+        <div class="cell"><div class="ev jiaoxi">13:30出發·14:00礁溪才藝助教<span class="pay o">$300</span></div></div>
+        <div class="cell"><div class="ev other">救國團・圍棋第2班<br>跟課學習（無費用）</div></div>
+        <div class="cell"><div class="ev jiaoxi">13:30出發·14:00礁溪才藝助教<span class="pay o">$300</span></div></div>
+        <div class="cell"><div class="ev absent">個人請假</div></div>
+        <div class="cell"></div>
     </div>
 </div>
 
-<!-- 無夏令營 7/20-7/25 -->
-<div class="week-title">
-    無夏令營　7/20 ~ 7/25
-    <span class="week-subtitle">救國團跟課 · 礁溪當助教</span>
-</div>
-<div class="main-table">
-    <div class="day-row col6">
-        <div class="cell time-label">時段</div>
-        <div class="cell header-cell"><div class="date">7/21</div><div class="weekday">週一</div></div>
-        <div class="cell header-cell"><div class="date">7/22</div><div class="weekday">週二</div></div>
-        <div class="cell header-cell"><div class="date">7/23</div><div class="weekday">週三</div></div>
-        <div class="cell header-cell"><div class="date">7/24</div><div class="weekday">週四</div></div>
-        <div class="cell header-cell"><div class="date">7/25</div><div class="weekday">週五</div></div>
-        <div class="cell header-cell"><div class="date">7/25</div><div class="weekday">週六</div></div>
+<!-- 第5梯 -->
+<div class="wk-title">第 5 梯夏令營　7/27 ～ 8/2<span class="wk-sub">9人 · 週三、週五下午去礁溪</span></div>
+<div class="table">
+    <div class="row">
+        <div class="cell time">時段</div>
+        <div class="cell head"><div class="dt">7/27</div><div class="wk">一</div></div>
+        <div class="cell head"><div class="dt">7/28</div><div class="wk">二</div></div>
+        <div class="cell head"><div class="dt">7/29</div><div class="wk">三</div></div>
+        <div class="cell head"><div class="dt">7/30</div><div class="wk">四</div></div>
+        <div class="cell head"><div class="dt">7/31</div><div class="wk">五</div></div>
+        <div class="cell head"><div class="dt">8/1</div><div class="wk">六</div></div>
+        <div class="cell head"><div class="dt">8/2</div><div class="wk">日</div></div>
     </div>
-    <div class="day-row col6">
-        <div class="cell time-label">上午</div>
-        <div class="cell">
-            <div class="event guoketuan">救國團 9:00-10:30<br>疊杯第1班 20人</div>
-            <div class="event guoketuan">救國團 10:40-12:00<br>疊杯第2班 16人</div>
-        </div>
-        <div class="cell"><div class="event observe">不排課</div></div>
-        <div class="cell"><div class="event observe">不排課</div></div>
-        <div class="cell"><div class="event guoketuan">救國團 10:40-12:00<br>圍棋第1班 20人</div></div>
-        <div class="cell"><div class="event observe">不排課</div></div>
-        <div class="cell"><div class="event absent">❌ 個人原因請假</div></div>
-    </div>
-    <div class="day-row col6">
-        <div class="cell time-label">下午</div>
+    <div class="row">
+        <div class="cell time">9:10-10:10</div>
+        <div class="cell"><div class="ev assist">魔術助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev assist">科學助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev other">上午不排</div></div>
+        <div class="cell"><div class="ev assist">疊杯助教<span class="pay">$200</span></div></div>
+        <div class="cell"><div class="ev assist">魔方助教<span class="pay">$200</span></div></div>
         <div class="cell"></div>
         <div class="cell"></div>
-         <div class="cell"><div class="event jiaoxi-assist">14:00-15:30 礁溪才藝課 當助教<span class="pay-tag jiaoxi">$300</span></div></div>
-         <div class="cell"><div class="event guoketuan">救國團 13:30-15:00<br>圍棋第2班 16人</div></div>
-        <div class="cell"><div class="event jiaoxi-assist">14:00-15:30 礁溪才藝課 當助教<span class="pay-tag jiaoxi">$300</span></div></div>
-        <div class="cell">
-<div class="event absent">❌ 個人原因請假</div>
-        </div>
     </div>
-</div>
-
-<!-- 第5梯夏令營 -->
-<div class="week-title">
-    第 5 梯夏令營　7/27 ~ 7/31
-    <span class="week-subtitle">宜蘭教室 · 7/29、7/31 去礁溪當老師</span>
-</div>
-<div class="main-table">
-    <div class="day-row col5">
-        <div class="cell time-label">時段</div>
-        <div class="cell header-cell"><div class="date">7/27</div><div class="weekday">週一</div></div>
-        <div class="cell header-cell"><div class="date">7/28</div><div class="weekday">週二</div></div>
-        <div class="cell header-cell"><div class="date">7/29</div><div class="weekday">週三</div></div>
-        <div class="cell header-cell"><div class="date">7/30</div><div class="weekday">週四</div></div>
-        <div class="cell header-cell"><div class="date">7/31</div><div class="weekday">週五</div></div>
-    </div>
-    <div class="day-row col5">
-        <div class="cell time-label">9:10-10:10</div>
-        <div class="cell"><div class="event camp">魔術 9人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event camp">科學 助教 9人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event other">週三上午不排課</div></div>
-        <div class="cell"><div class="event camp">疊杯 9人<span class="pay-tag">$200</span></div></div>
-        <div class="cell"><div class="event camp">音樂 助教 9人<span class="pay-tag">$200</span></div></div>
-    </div>
-    <div class="day-row col5">
-        <div class="cell time-label">10:20-11:50</div>
-        <div class="cell"><div class="event camp">氣球 9人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event camp">圍棋 9人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event other">週三上午不排課</div></div>
-        <div class="cell"><div class="event camp">美術 9人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"><div class="event camp">4D吸管 9人<span class="pay-tag green">$300</span></div></div>
-    </div>
-    <div class="day-row col5">
-        <div class="cell time-label">12:10-13:10 午休</div>
-        <div class="cell"><div class="event lunch">🍱 含餐點</div></div>
-        <div class="cell"><div class="event lunch">🍱 含餐點</div></div>
-        <div class="cell"><div class="event depart">13:30 出發礁溪</div></div>
-        <div class="cell"><div class="event lunch">🍱 免費午餐</div></div>
-        <div class="cell"><div class="event lunch">🍱 含餐點</div><div class="event depart">13:30 出發礁溪</div></div>
-    </div>
-    <div class="day-row col5">
-        <div class="cell time-label">13:20-14:50</div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"></div>
-        <div class="cell"><div class="event camp">藝術創作 8人<span class="pay-tag green">$300</span></div></div>
-        <div class="cell"></div>
-    </div>
-    <div class="day-row col5">
-        <div class="cell time-label">14:00-15:30</div>
+    <div class="row">
+        <div class="cell time">10:20-11:50</div>
+        <div class="cell"><div class="ev assist">氣球助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev assist">圍棋助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev other">上午不排</div></div>
+        <div class="cell"><div class="ev assist">書法助教<span class="pay g">$300</span></div></div>
+        <div class="cell"><div class="ev assist">4D吸管助教<span class="pay g">$300</span></div></div>
         <div class="cell"></div>
         <div class="cell"></div>
-        <div class="cell"><div class="event jiaoxi-teacher">14:00-15:30 礁溪科學課 當老師<span class="pay-tag teal">$350</span></div></div>
-        <div class="cell"></div>
-        <div class="cell"><div class="event jiaoxi-teacher">14:00-15:30 礁溪才藝課 當老師<span class="pay-tag teal">$350</span></div></div>
     </div>
-    <div class="day-row col5">
-        <div class="cell time-label">15:00-16:30</div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
-        <div class="cell"><div class="event observe">❌ 14後不行</div></div>
+    <div class="row">
+        <div class="cell time">12:00-13:20 午休</div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
         <div class="cell"></div>
-         <div class="cell"><div class="event camp">書法 助教 8人<span class="pay-tag green">$300</span></div></div>
+        <div class="cell"><div class="ev lunch">🍱 含餐點</div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">13:20-14:50</div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev jiaoxi">13:30出發·14:00礁溪科學主教<span class="pay o">$350</span></div></div>
+        <div class="cell"><div class="ev main">科學 主教<span class="pay g">$350</span></div></div>
+        <div class="cell"><div class="ev jiaoxi">13:30出發·14:00礁溪才藝主教<span class="pay o">$350</span></div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
+    </div>
+    <div class="row">
+        <div class="cell time">15:00-16:30</div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"><div class="ev other">14後不行</div></div>
+        <div class="cell"></div>
+        <div class="cell"><div class="ev assist">音樂助教<span class="pay g">$300</span></div></div>
+        <div class="cell"></div>
+        <div class="cell"></div>
         <div class="cell"></div>
     </div>
 </div>
